@@ -40,7 +40,12 @@ public class House extends Building {
      * @param name Added to the residents ArrayList
      */
   public void moveIn(String name){
-    residents.add(name);
+    if (! residents.contains(name)){
+      residents.add(name);
+    }
+    else{
+      throw new RuntimeException(name + " already lives here!");
+    }
   }
 
   /*
@@ -49,13 +54,13 @@ public class House extends Building {
      * @return The name of the resident who moved out
      */
   public String moveOut(String name){
-    if (residents.contains(name)){
-      residents.remove(name);
-    }
-    else{
+    if (! isResident(name)){
       throw new RuntimeException(name + " does not live here.");
     }
-    return name + "has moved out.";
+    else{
+      residents.remove(name);
+    }
+    return name;
   }
 
   /*

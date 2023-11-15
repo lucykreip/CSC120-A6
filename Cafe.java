@@ -1,19 +1,19 @@
-/* This is a stub for the Cafe class */
+
 public class Cafe extends Building {
-    private int nCoffeeOunces; // The number of ounces of coffee remaining in inventory
-    private int nSugarPackets; // The number of sugar packets remaining in inventory
-    private int nCreams; // The number of "splashes" of cream remaining in inventory
+    private int nCoffeeOunces; 
+    private int nSugarPackets; 
+    private int nCreams; 
     private int nCups;
 
     /*
-     * constructs a Cafe
+     * constructs a Cafe, initializes nCoffeeOunces, nSugarPackets, nCreams, nCups to beginning inventory numbers
      * @param name Assigns a String name to the cafe
      * @param address Assigns a String address to the cafe
      * @param nFloors Assigns an int number of floors to the cafe
      */
     public Cafe(String name, String address, int nFloors) {
         super(name, address, nFloors);
-        this.nCoffeeOunces = 100;
+        this.nCoffeeOunces = 50;
         this.nSugarPackets = 50;
         this.nCreams = 50;
         this.nCups = 50;
@@ -31,8 +31,8 @@ public class Cafe extends Building {
         this.nSugarPackets -= nSugarPackets;
         this.nCreams -= nCreams;
         this.nCups -= 1;
-        if (this.nCoffeeOunces < 10){
-            this.restock(100, 50, 50, 50);
+        if (this.nCoffeeOunces < 5 || this.nSugarPackets < 5 || this.nCreams < 5 || this.nCups < 5){
+            this.restock(50, 50, 50, 50);
         }
 
     }
@@ -59,7 +59,7 @@ public class Cafe extends Building {
         System.out.println(myCafe.nSugarPackets);
         System.out.println(myCafe.nCreams);
         System.out.println(myCafe.nCups);
-        myCafe.sellCoffee(80, 5, 10);
+        myCafe.sellCoffee(40, 5, 10);
         System.out.println(myCafe.nCoffeeOunces);
         System.out.println(myCafe.nSugarPackets);
         System.out.println(myCafe.nCreams);

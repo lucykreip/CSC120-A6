@@ -24,7 +24,12 @@ public class Library extends Building {
      */
 
   public void addTitle(String title){
-    collection.put(title, true);
+    if(! collection.containsKey(title)){
+      collection.put(title, true);
+    }
+    else{
+      throw new RuntimeException(title + " is already in this Library!");
+    }
   }
 
   /*
@@ -33,7 +38,12 @@ public class Library extends Building {
      * @return Returns the title that was just removed
      */
   public String removeTitle(String title){
-    collection.remove(title);
+    if (! collection.containsKey(title)){
+      throw new RuntimeException(title + " is not in this Library!");
+    }
+    else{
+      collection.remove(title);
+    }
     return title;
   }
 
@@ -43,7 +53,13 @@ public class Library extends Building {
      */
 
   public void checkOut(String title){
-    collection.replace(title, true, false);
+    if (this.isAvailable(title) || this.containsTitle(title)){
+      collection.replace(title, true, false);
+    }
+    else{
+      throw new RuntimeException("Can't check this out!");
+    }
+
   }
 
   /*
@@ -73,7 +89,6 @@ public class Library extends Building {
   public boolean isAvailable(String title){
     if (collection.getOrDefault(title, false) == true){
       return true;
-
     }
     else{
       return false;
@@ -98,6 +113,7 @@ public class Library extends Building {
     System.out.println(myLibrary.isAvailable("All about Geese"));
     myLibrary.checkOut("All about Geese");
     myLibrary.printCollection();
+    myLibrary.checkOut("Random");
   }
   
 }
